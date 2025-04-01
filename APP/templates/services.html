@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+{% block title %}Services | NexusIQ{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='services.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Services Hero Section -->
+<section class="services-hero-section">
+    <div class="container">
+        <div class="services-hero-content">
+            <h1 class="services-hero-title">Intelligent <span>Data Analysis</span></h1>
+            <p class="services-hero-description">
+                Transform raw attendance data into actionable insights with our advanced analytics platform.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Services Content Section -->
+<section class="services-content-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="services-text-block">
+                    <h2 class="section-title">Data Analysis Services</h2>
+                    <p>
+                        NexusIQ offers comprehensive data analysis services designed to provide deep insights into attendance patterns and academic performance.
+                    </p>
+                    <p>
+                        Our platform supports multiple analysis modes, allowing you to explore data from different perspectives and gain meaningful insights.
+                    </p>
+
+
+
+                    <!-- <div class="action-buttons" id="action-buttons">
+                        Form for Download Schema
+                        <form method="GET" action="{{ url_for('app_routes.download_schema') }}">
+                            <button type="submit" name="action" value="download" class="btn-primary download-btn">
+                                <i class="fas fa-download"></i> Download Schema
+                            </button>
+                        </form>
+                    
+                        Form for Upload Dataset
+                        <form method="POST" action="{{ url_for('app_routes.upload_dataset') }}" enctype="multipart/form-data">
+                            <input type="file" name="dataset_file" id="dataset-file" style="display: none;">
+                            <button type="submit" name="action" value="upload" class="btn-primary upload-btn">
+                                <i class="fas fa-upload"></i> Upload Dataset
+                            </button>
+                        </form>
+                    </div> -->
+
+                    <div class="action-buttons" id="action-buttons">
+                        <!-- Form for Selecting Analysis Mode -->
+                        <form id="analysis-mode-form">
+                            <div class="dataset-options">
+                                <h3>Select Your Analysis Mode</h3>
+                                <div class="radio-group">
+                                    <label class="radio-button">
+                                        <input type="radio" name="dataset" value="cumulative" id="cumulative" onclick="toggleButtons()">
+                                        <span>Cumulative Dataset Analysis</span>
+                                    </label>
+                                    <label class="radio-button">
+                                        <input type="radio" name="dataset" value="day-wise" id="day-wise" onclick="toggleButtons()">
+                                        <span>Day-Wise Dataset Analysis</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <!-- Form for Download Schema -->
+                        <!-- Form for Download Schema -->
+                        <!-- Form for Download Schema -->
+                        <form method="GET" action="{{ url_for('app_routes.download_schema') }}" id="download-form" style="display: none;">
+                        <form method="GET" action="{{ url_for('app_routes.download_schema') }}" id="download-form" style="display: none;">
+                            <input type="hidden" name="dataset" value="cumulative"> <!-- Hidden input for dataset -->
+                            <button type="submit" name="action" value="download" class="btn-primary download-btn">
+                                <i class="fas fa-download"></i> Download Schema
+                            </button>
+                        </form>
+
+                    
+                        <!-- Form for Upload Dataset -->
+                        <!-- <form method="POST" action="{{ url_for('app_routes.upload_dataset') }}" id="upload-form" style="display: none;"> -->
+                            <!-- <input type="hidden" name="dataset" value="cumulative"> Hidden input for dataset -->
+                            <!-- <input type="file" name="dataset_file" id="dataset-file" style="display: none;"> -->
+                            <!-- <button type="submit" name="action" value="upload" class="btn-primary upload-btn"> -->
+                                <!-- <i class="fas fa-upload"></i> Upload Dataset -->
+                            <!-- </button> -->
+                        <!-- </form> -->
+
+                        <!-- Form for Download Schema -->
+                        <!-- Form for Upload Dataset -->
+                        <form method="POST" action="{{ url_for('app_routes.upload_dataset') }}" enctype="multipart/form-data" id="upload-form" style="display: none;">
+                            <input type="hidden" name="dataset" value="cumulative"> <!-- Hidden input for dataset -->
+                            <input type="file" name="dataset_file" id="dataset-file" style="display: block;"> <!-- File input -->
+                            <button type="submit" name="action" value="upload" class="btn-primary upload-btn">
+                                <i class="fas fa-upload"></i> Upload Dataset
+                            </button>
+                        </form>
+
+                    </div>
+
+
+                    <!-- <form method="GET" action="{{ url_for('app_routes.download_schema') }}">
+                        <div class="dataset-options">
+                            <h3>Select Your Analysis Mode</h3>
+                            <div class="radio-group">
+                                <label class="radio-button">
+                                    <input type="radio" name="dataset" value="cumulative" id="cumulative">
+                                    <span>Cumulative Dataset Analysis</span>
+                                </label>
+                                <label class="radio-button">
+                                    <input type="radio" name="dataset" value="day-wise" id="day-wise">
+                                    <span>Day-Wise Dataset Analysis</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="action-buttons" id="action-buttons">
+                            <button type="submit" name="action" value="download" class="btn-primary download-btn">
+                                <i class="fas fa-download"></i> Download Schema
+                            </button>
+                            <button type="submit" name="action" value="upload" class="btn-primary upload-btn">
+                                <i class="fas fa-upload"></i> Upload Dataset
+                            </button>
+                        </div>
+                    </form>  -->
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="services-image-block">
+                    <div class="services-image-wrapper">
+                        <img src="{{ url_for('static', filename='images/report.jpg') }}" alt="Data Analysis Visualization"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Analysis Types Section -->
+<section class="analysis-types-section">
+    <div class="container">
+        <h2 class="section-title text-center">Our Analysis Capabilities</h2>
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="analysis-type-box">
+                    <div class="analysis-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 3v18h18"></path>
+                            <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 12.3"></path>
+                        </svg>
+                    </div>
+                    <h3>Performance Tracking</h3>
+                    <p>Comprehensive analysis of student performance correlation with attendance.</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="analysis-type-box">
+                    <div class="analysis-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 20h9"></path>
+                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                        </svg>
+                    </div>
+                    <h3>Customized Reporting</h3>
+                    <p>Tailored reports to meet specific institutional requirements.</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="analysis-type-box">
+                    <div class="analysis-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                    </div>
+                    <h3>Predictive Insights</h3>
+                    <p>Advanced machine learning models for future trend predictions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/services.js') }}"></script>
+{% endblock %}

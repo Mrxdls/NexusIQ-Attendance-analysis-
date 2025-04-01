@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block title %}Report | NexusIQ{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='report.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Report Hero Section -->
+<section class="report-hero-section">
+    <div class="container">
+        <div class="report-hero-content">
+            <h1 class="report-hero-title">Your <span>Analysis Report</span> is Ready</h1>
+            <p class="report-hero-description">
+                Access comprehensive insights and data visualizations based on your uploaded dataset.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Report Overview Section -->
+<section class="report-overview-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="report-text-block">
+                    <h2 class="section-title">Report Overview</h2>
+                    <p>
+                        Your attendance data has been processed through our advanced analytics engine. 
+                        The generated report contains detailed insights on attendance patterns, 
+                        performance correlations, and predictive analytics tailored to your institution's needs.
+                    </p>
+                    <p>
+                        Use these insights to make data-driven decisions, improve student engagement,
+                        and enhance overall academic performance tracking.
+                    </p>
+                    
+                    <div class="report-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>{{ dataset_info.students|default('450+') }}</h3>
+                                <p>Students Analyzed</p>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-dataset_infocalendar-check"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>{{ dataset_info.days|default('120') }}</h3>
+                                <p>Days Tracked</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="download-section">
+                        <h3>Download Your Reports</h3>
+                        <div class="download-options">
+                            <a href="{{ url_for('app_routes.download_zip_report') }}" class="download-btn zip-btn">
+                                <i class="fas fa-file-archive"></i>
+                                <span>Download All Reports (ZIP)</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="report-image-block">
+                    <div class="report-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Data Analytics Dashboard"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Report Features Section -->
+<section class="report-features-section">
+    <div class="container">
+        <h2 class="section-title text-center">Report Features</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Attendance Trends</h3>
+                    <p>Visualize attendance patterns across different time periods, identifying peak and low attendance days.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Predictive Analytics</h3>
+                    <p>AI-powered predictions on future attendance patterns and potential academic performance impacts.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Performance Correlation</h3>
+                    <p>Detailed analysis of the relationship between attendance rates and academic achievements.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Report Preview Section -->
+<section class="report-preview-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-5">
+                <h2 class="section-title">Report Preview</h2>
+                <p class="preview-description">
+                    Get a glimpse of what's inside your comprehensive analysis report. 
+                    Our reports combine numerical data with intuitive visualizations to make 
+                    complex information easily understandable.
+                </p>
+                <div class="preview-highlights">
+                    <div class="highlight-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Interactive data visualizations</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Executive summary with key findings</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Detailed statistical analysis</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Actionable recommendations</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="preview-gallery">
+                    <div class="preview-image primary">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Report Chart Preview">
+                    </div>
+                    <div class="preview-image secondary top">
+                        <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Dashboard Preview">
+                    </div>
+                    <div class="preview-image secondary bottom">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80" alt="Analytics Preview">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Report Actions Section -->
+<section class="report-actions-section">
+    <div class="container text-center">
+        <h2 class="section-title">Next Steps</h2>
+        <p class="actions-description">
+            Now that your report is ready, explore these options to maximize your insights.
+        </p>
+        <div class="action-buttons">
+            <a href="{{ url_for('app_routes.re_upload') }}" class="action-btn">
+                <i class="fas fa-upload"></i>
+                <span>Upload Another Dataset</span>
+            </a>
+            <a href="{{ url_for('app_routes.email_report') }}" class="action-btn">
+                <i class="fas fa-envelope"></i>
+                <span>Email This Report</span>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/report.js') }}"></script>
+{% endblock %}

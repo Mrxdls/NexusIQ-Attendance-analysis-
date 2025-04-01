@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+{% endblock %}
+
+{% block extra_js %}
+<!-- Add any additional JavaScript here -->
+{% endblock %}
+
+{% block title %}index | NexusIQ{% endblock %}
+
+{% block content %}
+<!-- About Hero Section -->
+<section class="about-hero-section">
+    <div class="container">
+        <div class="about-hero-content">
+            <h1 class="about-hero-title">Transforming <span>Attendance Analytics</span></h1>
+            <p class="about-hero-description">
+                Empowering educational institutions with data-driven insights to enhance student success and institutional performance.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- About Content Section -->
+<section class="about-content-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="about-text-block">
+                    <h2 class="section-title">About NexusIQ</h2>
+                    <p>
+                        Welcome to the Attendance Analysis System, a cutting-edge platform designed to revolutionize how attendance data is analyzed and utilized in academic institutions.
+                        In today's fast-paced world, managing attendance is more than just keeping records; it's about uncovering meaningful insights that drive better decision-making.
+                    </p>
+                    <p>
+                        Our system leverages advanced analytics, machine learning, and intuitive visualizations to provide actionable insights into attendance patterns, group behaviors, and their impact on academic performance.
+                    </p>
+                    <a href="{{ url_for('app_routes.services') }}" class="btn-primary">Make a Report</a>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="about-image-block">
+                    <div class="about-image-wrapper">
+                        <img src="{{ url_for('static', filename='images/report.jpg') }}" alt="Analytics Visualization"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission Section -->
+<section class="mission-section">
+    <div class="container">
+        <div class="mission-content text-center">
+            <h2 class="section-title">Our Mission</h2>
+            <p class="mission-text">
+                To empower educational institutions with advanced tools that transform attendance data into strategic insights. 
+                We aim to enhance academic performance by identifying key patterns and correlations, saving time and effort through automated analysis and reporting.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- What We Offer -->
+<section class="offer-section">
+    <div class="container">
+        <h2 class="section-title text-center">What We Offer</h2>
+        <div class="row">
+            {% for offer in offers %}
+            <div class="col-md-3 col-sm-6">
+                <div class="offer-box">
+                    <div class="offer-icon">
+                        {{ offer.icon|safe }}
+                    </div>
+                    <h3>{{ offer.title }}</h3>
+                    <p>{{ offer.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section id="team-section" class="team-section">
+    <div class="container">
+        <h2 class="section-title text-center">Meet Our Team</h2>
+        <div class="row justify-content-center">
+            {% for member in team %}
+            <div class="col-md-3 col-sm-6">
+                <a href="{{ member.linkedin }}" target="_blank" class="team-member">
+                    <img src="{{ url_for('static', filename=member.image) }}" class="team-img" alt="{{ member.name }}">
+                    <h5>{{ member.name }}</h5>
+                    <p>{{ member.role }}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
